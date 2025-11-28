@@ -1,0 +1,8 @@
+cat > .gitignore <<'GI'
+venv/
+__pycache__/
+outputs/
+uploads/
+*.pyc
+.env
+GI
