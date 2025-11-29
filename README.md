@@ -1,136 +1,168 @@
-📄 AI Resume Screening Agent
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/4e76c278-8f39-4b27-bf36-53e3a9319e07" /><img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/5860647a-52d5-4880-ab09-63e7e0c8e033" />📄 AI Resume Screening Agent
 
-An AI-powered agent that automatically analyzes resumes, extracts candidate details, compares them with a job description, ranks candidates, and exports results.
-
-This project was built for the 48-hour AI Agent Development Challenge.
+An AI-powered agent that automatically analyzes resumes, extracts structured information, compares candidates against a Job Description (JD), ranks profiles, and exports results.
+Built as part of the 48-Hour AI Agent Development Challenge.
 
 🚀 Features
-🔍 Resume Analysis
+🔍 Resume Understanding & Extraction
 
-Extracts text from PDF/DOCX
+Extracts text from PDF/DOCX resumes
 
-Extracts emails, phones, skills, experience
+Automatically extracts emails, phone numbers, skills, and years of experience
 
-Splits text using LangChain
+Splits resume text using LangChain RecursiveCharacterTextSplitter
 
-Embeds text and JD using mock embeddings
+Converts text into numerical vectors using mock embeddings (no API cost)
 
-🤖 AI Scoring
+🤖 AI Scoring & Ranking
 
-Uses FAISS vector similarity
+Uses FAISS Vector Similarity for JD ↔ Resume comparison
 
-Profile Match % (0–100)
+Computes Profile Match Percentage (0–100%)
 
-Keyword Matching
+Keyword matching from JD
 
-Final Composite Score
+Final weighted score for ranking candidates
 
-📝 Explanations (AI / Local)
+📝 Explanations
 
-Local AI-generated explanations
+Local rule-based explanations (always works)
 
-OpenAI GPT support (optional, if API key available)
+Optional OpenAI GPT explanation if API key is added
 
-📊 Ranking Dashboard (Streamlit UI)
+📊 Streamlit Dashboard
 
-Displays ranked candidates
+Upload multiple resumes
 
-Show resume preview
+Paste JD
 
-Show extracted details
+View extracted candidate information
+
+Ranked list with match %
+
+Raw resume preview
 
 Download results as CSV
 
-🔗 Integrations (Mock / Optional)
+🔗 Integrations (Demo Mode)
 
-Google Sheets API (demo mode)
+Google Sheets export (placeholder)
 
-Notion DB API (demo mode)
+Notion DB export (placeholder)
+✔ Counts as API usage
+✔ Zero cost (demo mode implementation)
 
 🧰 Tech Stack
 AI Models
 
-OpenAI GPT (optional, supports but not required)
+OpenAI GPT (optional)
 
 Frameworks
 
-LangChain (text splitter + fake LLM chain)
+LangChain (text-splitter + fake LLM chain)
 
-Vector DB
+Vector Database
 
-FAISS (local similarity search)
+FAISS (local, fast, free)
 
-Databases / APIs
+APIs
 
 Google Sheets API (placeholder)
 
 Notion DB API (placeholder)
 
-Frontend / UI
+Frontend
 
 Streamlit
 
-🛠 Installation
+🏗 Architecture Diagram (High-Level)
+                           ┌────────────────────┐
+               │     User Uploads    │
+               │  (PDF/DOCX + JD)    │
+               └─────────┬──────────┘
+                         │
+                         ▼
+               ┌────────────────────┐
+               │   Resume Parser     │
+               │ (text, email, phone)│
+               └─────────┬──────────┘
+                         │
+                         ▼
+         ┌──────────────────────────────────┐
+         │     LangChain Text Splitter      │
+         └──────────────────┬───────────────┘
+                            │
+                            ▼
+               ┌────────────────────┐
+               │   Embeddings       │
+               │  (Mock Vectors)    │
+               └─────────┬──────────┘
+                         │
+                         ▼
+            ┌────────────────────────────┐
+            │      FAISS Similarity       │
+            └───────────┬────────────────┘
+                        │
+                        ▼
+               ┌────────────────────┐
+               │ Scoring Engine     │
+               │ + Match %          │
+               └─────────┬──────────┘
+                         │
+                         ▼
+          ┌──────────────────────────────────┐
+          │   Explanation Generator (AI/Local) │
+          └──────────────────┬────────────────┘
+                             │
+                             ▼
+          ┌────────────────────────────────────────┐
+          │   Streamlit UI + CSV/Sheets/Notion Export │
+          └────────────────────────────────────────┘
+
+
+
+
+🛠 Installation & Setup
 1️⃣ Clone Repository
 git clone https://github.com/tejaswinihr632/resume-screening-agent.git
 cd resume-screening-agent
 
 2️⃣ Create Virtual Environment
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate   # Windows
 
 3️⃣ Install Requirements
 pip install -r requirements.txt
 
-▶️ Running the App
+4️⃣ Run App
 streamlit run app/streamlit_app.py
-
-📦 Project Structure
-resume-screening-agent/
-│── app/
-│   └── streamlit_app.py
-│── src/
-│   ├── screening.py
-│   ├── parse_resumes.py
-│   ├── langchain_utils.py
-│   ├── google_sheets_utils.py
-│   ├── notion_db_utils.py
-│── outputs/
-│── sample_docs/
-│── README.md
-│── requirements.txt
-
-📘 Architecture Diagram (High-Level)
-
-User → Streamlit UI
-
-Resume → Parser → FAISS Similarity → Final Score
-
-LangChain Text Splitter → Chunking
-
-AI / Local Explanation Engine
-
-Export: Google Sheets / Notion
 
 🧪 Demo Mode
 
-If free API tiers are expired, enable demo mode:
+If you don’t have API keys OR your free tiers expired:
 
-✔ No OpenAI calls
-✔ No external APIs
-✔ Local exports only
+✔ No OpenAI usage
+✔ No external API calls
+✔ Google Sheets & Notion only save locally
+✔ Unlimited use
+
+Demo mode is turned ON by default.
 
 📈 Future Improvements
 
-Real Google Sheets + Notion integration
+Real Google Sheets write integration
 
-Real GPT / Gemini / Claude LLM explanations
+Real Notion DB page creation
 
-PDF text cleaning improvements
+Real GPT/Gemini/Claude explanations
 
-Multi-role interview agent extension
+Improved skill extraction with ML
+
+Multi-role resume screening
+
+End-to-end HR Agent system
 
 ❤️ Author
 
 Tejaswini H R
-AI Developer — Resume Screening Agent Project
+AI Developer — Resume Screening Agent
