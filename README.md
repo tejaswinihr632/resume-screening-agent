@@ -1,4 +1,4 @@
-📄 AI Resume Screening Agent
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8fd8234d-fb35-4a9c-a1da-edb7cd9b2eee" />📄 AI Resume Screening Agent
 
 An AI-powered agent that automatically analyzes resumes, extracts structured information, compares candidates against a Job Description (JD), ranks profiles, and exports results.
 Built as part of the 48-Hour AI Agent Development Challenge.
@@ -76,7 +76,8 @@ Frontend
 Streamlit
 
 🏗 Architecture Diagram (High-Level)
-  ![Uploading image.png…]()
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/8f23bfc7-64d6-49f7-ac6b-ced93663de42" />
+
 
 
 
